@@ -1,0 +1,164 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="UTF-8" />
+	<style>
+	table {
+		border-collapse: collapse;
+		width: 100%;
+	}
+
+	th, td {
+		text-align: left;
+		padding: 8px;
+	}
+
+	tr:nth-child(1){background-color: #008888}
+	tr:nth-child(4){background-color: #008888}
+	tr:nth-child(7){background-color: #008888}
+	</style>
+</head>
+<body>
+<h1>Train<h1>
+<div id="train" style="width:60%">
+	<table>
+		<!--first-->
+		<tr>
+			<td id="1type"></td>
+			<td id="1number" colspan="8"></td>
+		</tr>
+		<tr>
+			<td id="1start_station"></td>
+			<td>---></td>
+			<td id="1pass1"></td>
+			<td>---></td>
+			<td id="1pass2"></td>
+			<td>---></td>
+			<td id="1pass3"></td>
+			<td>---></td>
+			<td id="1end_station1"></td>
+		</tr>
+		<tr>
+			<td id="1Time_start"></td>
+			<td>	</td>
+			<td id="1Time_1"></td>
+			<td>	</td>
+			<td id="1Time_2"></td>
+			<td>	</td>
+			<td id="1Time_3"></td>
+			<td>	</td>
+			<td id="1Time_end"></td>
+		</tr>
+		<!--second-->
+		<tr>
+			<td id="2type"></td>
+			<td id="2number" colspan="8"></td>
+		</tr>
+		<tr>
+			<td id="2start_station"></td>
+			<td>---></td>
+			<td id="2pass1"></td>
+			<td>---></td>
+			<td id="2pass2"></td>
+			<td>---></td>
+			<td id="2pass3"></td>
+			<td>---></td>
+			<td id="2end_station1"></td>
+		</tr>
+		<tr>
+			<td id="2Time_start"></td>
+			<td>	</td>
+			<td id="2Time_1"></td>
+			<td>	</td>
+			<td id="2Time_2"></td>
+			<td>	</td>
+			<td id="2Time_3"></td>
+			<td>	</td>
+			<td id="2Time_end"></td>
+		</tr>
+		<!--third-->
+		<tr>
+			<td id="3type"></td>
+			<td id="3number" colspan="8"></td>
+		</tr>
+		<tr>
+			<td id="3start_station"></td>
+			<td>---></td>
+			<td id="3pass1"></td>
+			<td>---></td>
+			<td id="3pass2"></td>
+			<td>---></td>
+			<td id="3pass3"></td>
+			<td>---></td>
+			<td id="3end_station1"></td>
+		</tr>
+		<tr>
+			<td id="3Time_start"></td>
+			<td>	</td>
+			<td id="3Time_1"></td>
+			<td>	</td>
+			<td id="3Time_2"></td>
+			<td>	</td>
+			<td id="3Time_3"></td>
+			<td>	</td>
+			<td id="3Time_end"></td>
+		</tr>
+	</table>
+</div>
+
+<script >
+	if (window.XMLHttpRequest){
+	// code for IE7+, Firefox, Chrome, Opera, Safari
+	xmlhttp=new XMLHttpRequest();
+	}
+	else{
+	// code for IE6, IE5
+	xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+	}
+		
+	xmlhttp.open("GET","http://dmplus.cs.ccu.edu.tw/~sWWW_2017/train.xml",false);
+	xmlhttp.send();
+	xmlDoc=xmlhttp.responseXML;
+	
+	document.getElementById("1type").innerHTML=xmlDoc.getElementsByTagName("type")[0].childNodes[0].nodeValue;
+	document.getElementById("1number").innerHTML=xmlDoc.getElementsByTagName("number")[0].childNodes[0].nodeValue;
+	document.getElementById("1start_station").innerHTML=xmlDoc.getElementsByTagName("start_station")[0].childNodes[0].nodeValue;
+	document.getElementById("1pass1").innerHTML=xmlDoc.getElementsByTagName("pass_1")[0].childNodes[0].nodeValue;
+	document.getElementById("1pass2").innerHTML=xmlDoc.getElementsByTagName("pass_2")[0].childNodes[0].nodeValue;
+	document.getElementById("1pass3").innerHTML=xmlDoc.getElementsByTagName("pass_3")[0].childNodes[0].nodeValue;
+	document.getElementById("1end_station1").innerHTML=xmlDoc.getElementsByTagName("end_station")[0].childNodes[0].nodeValue;
+	document.getElementById("1Time_start").innerHTML=xmlDoc.getElementsByTagName("Time_start")[0].childNodes[0].nodeValue;
+	document.getElementById("1Time_1").innerHTML=xmlDoc.getElementsByTagName("Time_1")[0].childNodes[0].nodeValue;
+	document.getElementById("1Time_2").innerHTML=xmlDoc.getElementsByTagName("Time_2")[0].childNodes[0].nodeValue;
+	document.getElementById("1Time_3").innerHTML=xmlDoc.getElementsByTagName("Time_3")[0].childNodes[0].nodeValue;
+	document.getElementById("1Time_end").innerHTML=xmlDoc.getElementsByTagName("Time_end")[0].childNodes[0].nodeValue;
+	
+	document.getElementById("2type").innerHTML=xmlDoc.getElementsByTagName("type")[1].childNodes[0].nodeValue;
+	document.getElementById("2number").innerHTML=xmlDoc.getElementsByTagName("number")[1].childNodes[0].nodeValue;
+	document.getElementById("2start_station").innerHTML=xmlDoc.getElementsByTagName("start_station")[0].childNodes[0].nodeValue;
+	document.getElementById("2pass1").innerHTML=xmlDoc.getElementsByTagName("pass_1")[1].childNodes[0].nodeValue;
+	document.getElementById("2pass2").innerHTML=xmlDoc.getElementsByTagName("pass_2")[1].childNodes[0].nodeValue;
+	document.getElementById("2pass3").innerHTML=xmlDoc.getElementsByTagName("pass_3")[1].childNodes[0].nodeValue;
+	document.getElementById("2end_station1").innerHTML=xmlDoc.getElementsByTagName("end_station")[1].childNodes[0].nodeValue;
+	document.getElementById("2Time_start").innerHTML=xmlDoc.getElementsByTagName("Time_start")[1].childNodes[0].nodeValue;
+	document.getElementById("2Time_1").innerHTML=xmlDoc.getElementsByTagName("Time_1")[1].childNodes[0].nodeValue;
+	document.getElementById("2Time_2").innerHTML=xmlDoc.getElementsByTagName("Time_2")[1].childNodes[0].nodeValue;
+	document.getElementById("2Time_3").innerHTML=xmlDoc.getElementsByTagName("Time_3")[1].childNodes[0].nodeValue;
+	document.getElementById("2Time_end").innerHTML=xmlDoc.getElementsByTagName("Time_end")[1].childNodes[0].nodeValue;
+	
+	document.getElementById("3type").innerHTML=xmlDoc.getElementsByTagName("type")[2].childNodes[0].nodeValue;
+	document.getElementById("3number").innerHTML=xmlDoc.getElementsByTagName("number")[2].childNodes[0].nodeValue;
+	document.getElementById("3start_station").innerHTML=xmlDoc.getElementsByTagName("start_station")[0].childNodes[0].nodeValue;
+	document.getElementById("3pass1").innerHTML=xmlDoc.getElementsByTagName("pass_1")[2].childNodes[0].nodeValue;
+	document.getElementById("3pass2").innerHTML=xmlDoc.getElementsByTagName("pass_2")[2].childNodes[0].nodeValue;
+	document.getElementById("3pass3").innerHTML=xmlDoc.getElementsByTagName("pass_3")[2].childNodes[0].nodeValue;
+	document.getElementById("3end_station1").innerHTML=xmlDoc.getElementsByTagName("end_station")[2].childNodes[0].nodeValue;
+	document.getElementById("3Time_start").innerHTML=xmlDoc.getElementsByTagName("Time_start")[2].childNodes[0].nodeValue;
+	document.getElementById("3Time_1").innerHTML=xmlDoc.getElementsByTagName("Time_1")[2].childNodes[0].nodeValue;
+	document.getElementById("3Time_2").innerHTML=xmlDoc.getElementsByTagName("Time_2")[2].childNodes[0].nodeValue;
+	document.getElementById("3Time_3").innerHTML=xmlDoc.getElementsByTagName("Time_3")[2].childNodes[0].nodeValue;
+	document.getElementById("3Time_end").innerHTML=xmlDoc.getElementsByTagName("Time_end")[2].childNodes[0].nodeValue;
+	//train.style.display='';
+</script>
+</body>
+</html>

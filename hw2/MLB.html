@@ -1,0 +1,130 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<style>
+	table, th, td {
+    border: 1px solid black;
+	}
+</style>
+</head>
+<body>
+<div id="MLB" >
+	<table style="margin:0px auto;width=1100;background-color:yellow;color:red;text-align:center">
+		<tr>
+			<td id="1Team" colspan="5"></td>
+		<tr>
+		<tr>
+			<td style="text-align:center">Image</td>
+			<td style="text-align:center" colspan="2">star</td>
+			<td style="text-align:center" >Coach</td>
+			<td style="text-align:center" >League</td>
+		<tr>
+		<tr>
+			<td><img src="" id="1Image" width="100;"></td>
+			<td style="text-align:center" id="1name"></td>
+			<td style="text-align:center" >Birth<p id="1birth"></p></td>
+			<td style="text-align:center" id="1Coach"></td>
+			<td style="text-align:center" id="1League"></td>
+		<tr>
+		<tr>
+			<td colspan="5">
+				<iframe  id="1Video" src="" width="1080" height="720" ></iframe>
+			</td>
+		</tr>
+	</table>
+	</br>
+	</br>
+	<table style="margin:0px auto;width=1100;background-color:black;color:white;text-align:center">
+		<tr>
+			<td style="text-align:center" id="2Team" colspan="5"></td>
+		<tr>
+		<tr>
+			<td style="text-align:center">Image</td>
+			<td style="text-align:center" colspan="2">star</td>
+			<td style="text-align:center" >Coach</td>
+			<td style="text-align:center" >League</td>
+		<tr>
+		<tr>
+			<td><img src="" id="2Image" width="100"></td>
+			<td style="text-align:center" id="2name"></td>
+			<td style="text-align:center" >Birth<p id="2birth"></p></td>
+			<td style="text-align:center" id="2Coach"></td>
+			<td style="text-align:center" id="2League"></td>
+		<tr>
+		<tr>
+			<td colspan="5">
+				<iframe  id="2Video" src="" width="1080" height="720" ></iframe>
+			</td>
+		</tr>
+	</table>
+	</br>
+	</br>
+	<table style="margin:0px auto;width=1100;background-color:orange;color:blue;text-align:center">
+		<tr>
+			<td style="text-align:center" id="3Team" colspan="5"></td>
+		<tr>
+		<tr>
+			<td style="text-align:center">Image</td>
+			<td style="text-align:center" colspan="2">star</td>
+			<td style="text-align:center" >Coach</td>
+			<td style="text-align:center" >League</td>
+		<tr>
+		<tr>
+			<td><img src="" id="3Image" width="100"></td>
+			<td style="text-align:center" id="3name"></td>
+			<td style="text-align:center" >Birth<p id="3birth"></p></td>
+			<td style="text-align:center" id="3Coach"></td>
+			<td style="text-align:center" id="3League"></td>
+		<tr>
+		<tr>
+			<td colspan="5">
+				<iframe  id="3Video" src="" width="1080" height="720" ></iframe>
+			</td>
+		</tr>
+	</table>
+</div>
+</div>
+<script>
+	if (window.XMLHttpRequest){
+	// code for IE7+, Firefox, Chrome, Opera, Safari
+	xmlhttp=new XMLHttpRequest();
+	}
+	else{
+	// code for IE6, IE5
+	xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+	}
+		
+	xmlhttp.open("GET","http://dmplus.cs.ccu.edu.tw/~sWWW_2017/MLB.xml",false);
+	xmlhttp.send();
+	xmlDoc=xmlhttp.responseXML;
+	
+	document.getElementById("1Team").innerHTML=xmlDoc.getElementsByTagName("Team")[0].childNodes[0].nodeValue;
+	document.getElementById("1Image").src=xmlDoc.getElementsByTagName("Image")[0].childNodes[0].nodeValue;
+	document.getElementById("1name").innerHTML=xmlDoc.getElementsByTagName("name")[0].childNodes[0].nodeValue;
+	document.getElementById("1birth").innerHTML=xmlDoc.getElementsByTagName("birth")[0].childNodes[0].nodeValue;
+	document.getElementById("1Coach").innerHTML=xmlDoc.getElementsByTagName("Coach")[0].childNodes[0].nodeValue;
+	document.getElementById("1League").innerHTML=xmlDoc.getElementsByTagName("League")[0].childNodes[0].nodeValue;
+	document.getElementById("1Video").src=xmlDoc.getElementsByTagName("Video")[0].childNodes[0].nodeValue;
+	
+	document.getElementById("2Team").innerHTML=xmlDoc.getElementsByTagName("Team")[1].childNodes[0].nodeValue;
+	document.getElementById("2Image").src=xmlDoc.getElementsByTagName("Image")[1].childNodes[0].nodeValue;
+	document.getElementById("2name").innerHTML=xmlDoc.getElementsByTagName("name")[1].childNodes[0].nodeValue;
+	document.getElementById("2birth").innerHTML=xmlDoc.getElementsByTagName("birth")[1].childNodes[0].nodeValue;
+	document.getElementById("2Coach").innerHTML=xmlDoc.getElementsByTagName("Coach")[1].childNodes[0].nodeValue;
+	document.getElementById("2League").innerHTML=xmlDoc.getElementsByTagName("League")[1].childNodes[0].nodeValue;
+	document.getElementById("2Video").src=xmlDoc.getElementsByTagName("Video")[1].childNodes[0].nodeValue;
+	
+	document.getElementById("3Team").innerHTML=xmlDoc.getElementsByTagName("Team")[2].childNodes[0].nodeValue;
+	document.getElementById("3Image").src=xmlDoc.getElementsByTagName("Image")[2].childNodes[0].nodeValue;
+	document.getElementById("3name").innerHTML=xmlDoc.getElementsByTagName("name")[2].childNodes[0].nodeValue;
+	document.getElementById("3birth").innerHTML=xmlDoc.getElementsByTagName("birth")[2].childNodes[0].nodeValue;
+	document.getElementById("3Coach").innerHTML=xmlDoc.getElementsByTagName("Coach")[2].childNodes[0].nodeValue;
+	document.getElementById("3League").innerHTML=xmlDoc.getElementsByTagName("League")[2].childNodes[0].nodeValue;
+	document.getElementById("3Video").src=xmlDoc.getElementsByTagName("Video")[2].childNodes[0].nodeValue;
+	
+	
+	
+	
+</script>
+</body>
+</html>

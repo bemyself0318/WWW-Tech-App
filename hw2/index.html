@@ -1,0 +1,45 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<style>
+		.home {
+			position: absolute;
+			top: 25%;
+			left: 40%;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="home">
+	<h1>Enter XML File<h1>
+	<input type="text" id="xmlUrl">
+	</br>
+	<a href="http://dmplus.cs.ccu.edu.tw/~s403410035/hw2/MLB.xml">View XSL result for MLB.xml</a>
+	</br>
+	<button onclick="submit()">Submit Query</button>
+</div>
+<script >
+function submit(){
+	dom = document.getElementById("xmlUrl");
+	//console.log(dom.value);
+	if(!dom.value.length){
+		alert("Error, Please input XML url.");
+	}
+	
+	if(dom.value == "train.xml"){
+		window.open('http://dmplus.cs.ccu.edu.tw/~s403410035/hw2/train.html');
+	}
+	else if(dom.value == "MLB.xml"){
+		window.open('http://dmplus.cs.ccu.edu.tw/~s403410035/hw2/MLB.html');
+	}
+	else{
+		alert("Error, no this file")
+	}
+}
+</script>
+</body>
+</html>
+
+
+
