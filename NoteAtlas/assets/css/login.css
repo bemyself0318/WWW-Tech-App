@@ -1,0 +1,61 @@
+html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+.activity-bg {
+  background-image: url("./image/login-bg1.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  -webkit-transition: background-image 500ms ease-in 400ms;
+}
+.flexBox {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items:center;
+  justify-content: center;
+}
+
+.loginPosition {
+  width: 50%;
+  text-align: center;
+  background-color: rgba(255,255,255,0.7);
+  border: #000 solid 2px;
+  border-radius: 10px;
+  padding: 20px;
+}
+
+.welcome{
+  color: #666;
+  font-size: 90px;
+  padding: 15px;
+  text-shadow:10px 10px 10px rgba(20%,20%,40%,0.5);
+}
+
+.buttonPosition{
+  padding: 15px;
+}
+
+.loginButton{
+  background-color: rgba(255,255,255,0.0);
+  padding: 10px 50px;
+  font-size: 50px;
+  color: #666;
+  border: 1px solid #666;
+  border-radius: 10px;
+  box-shadow:6px 6px 5px rgba(20%,20%,40%,0.5);
+  -webkit-transition: box-shadow 1s;
+}
+
+.loginButton:hover {
+  cursor: pointer;
+  box-shadow:0px 0px 0px rgba(20%,20%,40%,0.5);
+}
