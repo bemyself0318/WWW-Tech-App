@@ -1,0 +1,273 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<title>大富翁4</title>
+<link rel="stylesheet" type="text/css" href="hw5.css">
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+</head>
+<body> 
+<header>
+	<h1>大富翁4</h1>
+</header>
+</br>
+<div class="main">
+	<audio  id="BGM" autoplay loop src="audio/menu.mp3" type="audio/mpeg">
+	</audio>
+	<div class="left">
+		<div class="role-selcet">
+			<div class="role">
+				<input type='image' src="images/s1.png">
+				<img src="images/checkmark.png" class="mark" height=50px width=50px>
+			</div>
+			<div class="role">
+				<input type='image' src="images/s2.png">
+				<img src="images/checkmark.png" class="mark" height=50px width=50px hidden>
+			</div>
+			<div class="role">
+				<input type='image' src="images/s3.png">
+				<img src="images/checkmark.png" class="mark" height=50px width=50px hidden>
+			</div>
+			<div class="role">
+				<input type='image' src="images/s4.png">
+				<img src="images/checkmark.png" class="mark" height=50px width=50px hidden>
+			</div>
+			<div class="role">
+				<input type='image' src="images/s5.png">
+				<img src="images/checkmark.png" class="mark" height=50px width=50px hidden>
+			</div>
+			<div class="role">
+				<input type='image' src="images/s6.png">
+				<img src="images/checkmark.png" class="mark" height=50px width=50px hidden>
+			</div>
+		</div>
+		</br>
+		<div class="nav">
+			<input type='image' id='ok' src="images/ok.png">
+			<input type='image' id='rank' src="images/rank.png">
+			<input type='image' id='rule' src="images/rule.png">
+		</div>
+		<table class='rank-list' style='margin-left:35px; border: 1px solid black;font-size:xx-large;' hidden>
+			<thead>
+				<tr>
+					<td>Rank</td>
+					<td>Name</td>
+					<td>Score</td>
+				</tr>
+			</thead>
+			<tbody>
+			</tbody>
+		</table>
+	</div>
+	<div class="game">
+		<canvas id="game" width=700 height=700" ></canvas>
+	</div>
+	<img src="images/over.png" id="gameover" height=500 width=500 style="position: absolute;top: 100px;left: 450px;" hidden>
+</div>
+
+<div id="dialog" title="Rule" style="display:none">
+  <img src="images/intro.png" alt="Placeholder Image">
+</div>
+</body>
+</html>
+<script>
+var rank_data = new Array();
+var interval_idx;
+var now_role_url =" ";
+//define player treasure bomb
+function player(x, y, img) { 
+	this.x = x;
+	this.y = y;
+	this.img = img;
+}
+
+function bomb(x, y, img) {
+	this.x = x;
+	this.y = y;
+	this.img = img;
+}
+
+function treasure(x, y, img) {
+	this.x = x;
+	this.y = y;
+	this.img = img;
+}
+
+function enterGame() {
+
+	// add background
+	$('#game').css('background-image','url("images/background1.png")');
+	var ctx = game.getContext('2d');
+	
+	var score = 0;
+	var treasure_speed = 3;
+	var bomb_speed = 3;
+	var frame_cnt = 0;
+	var num_object_control_by_frame = 24;
+	var FPS = 40;
+	
+	//player
+	var playerImg = new Image();
+	if(now_role_url == " ") {
+		now_role_url = 'images/s1.png'
+	}
+	playerImg.src = now_role_url;
+	player_x = game.width/2;
+	player_y =game.height - playerImg.height;
+	var user = new player(player_x, player_y, playerImg);
+	
+	//treasure
+	var treasureArray = new Array();
+	var treasureImg = new Image();
+	treasureImg.src = 'images/treasure.png';
+	
+	//bomb
+	var bombArray = new Array();
+	var bombImg = new Image();
+	bombImg.src = 'images/bomb.png'
+	
+	function touching(object, user) {
+	
+		if(user.x >= object.x + object.img.width || user.x + user.img.width <= object.x) {
+			return false;
+		}
+		if(user.y >= object.y + object.img.height || user.y + user.img.height <= object.y) {
+			return false;
+		}
+		return true;
+	}
+
+	function frame () {
+		frame_cnt ++;
+		ctx.clearRect(0,0,game.width,game.height);
+		ctx.fillStyle = '#33FFFF';
+		ctx.font = '30px Consolas';
+		ctx.fillText("Score: " + score,20,100);
+		
+		//player
+		ctx.drawImage(user.img, user.x, user.y);
+		
+		//add new treasure and bomb
+		if(frame_cnt % num_object_control_by_frame == 0) {
+			var newbomb_num = Math.round(Math.random());
+			var newtreasure_num = Math.round(Math.random());
+			for(var i=0; i<newtreasure_num; i++) {
+				var x = Math.random() * (game.width - treasureImg.width)
+				var data = new treasure(x, 0, treasureImg);
+				treasureArray.push(data);
+			}
+			for(var i=0; i<newbomb_num; i++) {
+				var x = Math.random() * (game.width - bombImg.width)
+				var data = new bomb(x, 0, bombImg);
+				bombArray.push(data);
+			}
+		}
+		//show treasure & bomb
+		for(var i in treasureArray) {
+			treasureArray[i].y += treasure_speed;
+			ctx.drawImage(treasureArray[i].img, treasureArray[i].x, treasureArray[i].y);
+			if(treasureArray[i].y > game.height) {
+				treasureArray.splice(i,1);
+			}
+		}
+		for(var i in bombArray) {
+			bombArray[i].y += bomb_speed;
+			ctx.drawImage(bombArray[i].img, bombArray[i].x, bombArray[i].y);
+			if(bombArray[i].y > game.height) {
+				bombArray.splice(i,1);
+			}
+		}
+	
+		//check treasure touch 
+		for(var i in treasureArray) {
+			if(touching(treasureArray[i], user)) {
+				score += 10;
+				treasureArray.splice(i,1);
+			}
+		}
+		//check bomb touch
+		for(var i in bombArray) {
+			if(touching(bombArray[i], user)) {
+				clearInterval(interval_idx);
+				var input = prompt("you get " + score + "pionts, please enter your name:");
+				var tmp_data = {"name":input, "score":score};
+				rank_data.push(tmp_data);
+				localStorage.setItem('rank_list', JSON.stringify(rank_data));
+				$('#gameover').show();
+				ctx.fillStyle = '#66FF66';
+				ctx.font = '100px Consolas';
+				ctx.fillText("Score: " + score,100,500);
+				$('#BGM').attr("src","audio/menu.mp3");
+				
+			}
+		}
+	
+	}
+
+	interval_idx = setInterval(frame, 1000/FPS);
+
+	function MyKeyDownHandler (MyEvent) {
+		//left
+		if(MyEvent.keyCode == 37 && user.x > 0) {
+			user.x = user.x - 10;
+		}
+		//right
+		if(MyEvent.keyCode == 39 && user.x + user.img.width < game.width) {
+			user.x = user.x + 10;
+		}
+		//p:pause
+		if(MyEvent.keyCode == 80) {
+			alert("遊戲暫停，按確定繼續遊戲");	
+			//clearInterval(interval_idx);
+		}
+		//enter: start
+		MyEvent.preventDefault();
+	}
+
+	addEventListener("keydown", MyKeyDownHandler);
+}
+	
+
+$('#rule').click(function() {
+	$('#dialog').css('display','block');
+	$( "#dialog" ).dialog({
+		width:800
+	});
+});
+
+$('.role input').click(function() {
+	$(this).next().show();
+	$('.role input').not(this).next().hide();
+	now_role_url = $(this).attr('src');
+});
+
+$('#ok').click(function() {
+	$('#BGM').attr("src","audio/play.mp3");
+	$('#gameover').hide();
+	enterGame();
+	
+});
+
+$('#rank').click(function () {
+	var data = localStorage.getItem('rank_list');
+	data = JSON.parse(data);
+	for(var i in data){
+		console.log(data[i]);
+	}
+	
+	data.sort(function(a, b) {
+		return a.score >= b.score ? -1:1;
+	});
+	data =data.slice(0,15);
+	var $tbody = $('.rank-list tbody');
+	$tbody.empty();
+	$.each(data, function(i, e) {
+		var row = data[i];
+		$tbody.append(
+			'<tr><td>' + (i + 1) + '</td><td>' + row.name + '</td><td align="right" >' + row.score + '</td></tr>'
+		)
+	});
+	$('.rank-list').show();
+});
+</script>

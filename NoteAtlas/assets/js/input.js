@@ -1,3 +1,9 @@
+$(document).ready(function() {
+    $("#setPlace").mCustomScrollbar({
+      theme: "minimal-dark",
+    });
+});
+
 function inputComment() {
   var dialog = $("#dialog").dialog({
     height: 500,
@@ -11,6 +17,7 @@ function inputComment() {
     },
     draggable: false
   });
+
 
 }
 

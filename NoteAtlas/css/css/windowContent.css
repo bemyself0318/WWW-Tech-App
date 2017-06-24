@@ -1,0 +1,83 @@
+html {
+  padding: 0px;
+  margin: 0px;
+}
+body {
+  padding: 0px;
+  margin: 0px;
+}
+input {
+  outline: none;
+}
+.allData {
+  width: 500px;
+  margin: 0 auto;
+  overflow: auto;
+}
+.header {
+  font-size: 30px;
+  text-align: center;
+  color: #888;
+}
+
+.image {
+  width: 100%;
+}
+
+.image img {
+  width: 100%;
+}
+
+.comment {
+  padding: 10px;
+  font-size: 20px;
+  color: #888;
+}
+
+.detail {
+  display: inline-block;
+  width: 80%;
+}
+
+.font-awesome {
+  text-align: center;
+  float: right;
+  width: 50px;
+  height: 50px;
+  display: inline-block;
+  font-size: 40px;
+  padding: 5px;
+  border: 1px #666 solid;
+  border-radius: 100px;
+}
+
+.font-awesome:hover {
+  cursor: pointer;
+  background-color: #0066FF;
+  color: #FFF;
+  border-color: #FFF;
+}
+
+.otherComments {
+  font-size: 20px;
+  color: #888;
+  padding: 10px;
+  width: 100%;
+}
+
+.otherDetail {
+  padding: 10px 0px;
+}
+
+.userImg {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  padding: 5px;
+  padding-right: 10px;
+}
+
+#words {
+  width: 100%;
+  padding: 10px;
+}
